@@ -1,0 +1,30 @@
+body {
+	background-image: url(../images/background.jpg);
+
+}
+
+.container {
+	text-align:center;
+}
+
+#randomNumber{
+	font-size:40px;
+	color:red;
+	font-weight:600;
+}
+
+img {
+	height: 150px;
+	width:150px;
+	margin:25px;
+}
+
+h1 {
+	color:red;
+	font-weight:600;
+}
+
+#totalScore {
+	font-size:40px;
+	font-color:red;
+}
