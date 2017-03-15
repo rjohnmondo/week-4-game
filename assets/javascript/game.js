@@ -1,97 +1,102 @@
-//var randomNumber = Math.floor((Math.random()*102) +19);
-//console.log(randomNumber);
+$(document).ready(function() {
 
-//function myFunction () {
-	//alert("You clicked the Red Crystal");
-//}
+// Variables
+    var randomNumber;
+    var redVal;
+    var blueVal;
+    var greenVal;
+    var yellowVal;
+    var totalScore;
+    var wins = 0;
+    var losses = 0;
 
-//$("#randomNumber").html(randomNumber);
+// Prepare game for play
+function prepare () {
+    randomNumber = Math.floor(Math.random()*120+19);
+    redVal = Math.floor(Math.random()*12+1);
+    blueVal = Math.floor(Math.random()*12+1);
+    greenVal = Math.floor(Math.random()*12+1);
+    yellowVal = Math.floor(Math.random()*12+1);
+    totalScore = 0;
+    $("#randomNumber").html(randomNumber); // Places the random number in HTML to start game.
 
+   // Internal Testing of initial values
+   console.log("The game will start with the random number of " + randomNumber);
+   console.log("The game will start with the Red Crystal value of " + redVal);
+   console.log("The game will start with the Blue Crystal value of " + blueVal);
+   console.log("The game will start with the Green Crystal value of " + greenVal);
+   console.log("The game will start with the Yellow Crystal value of " + yellowVal);
+};
 
-$(document).ready (function(){
-	// Global Variables
+// Tallies Wins and losses for the game 
+function outcome () {
+    if (totalScore === randomNumber ) {
+        alert("You Win !");
+        wins++;
+        $("#totalScore").html(0); // Clears the total score  in HTML to start the next game.
+        console.log(wins); // Internal Test
+        prepare();
+    }
 
-	var randomNumber = Math.floor((Math.random()*102)+19);
-	// $("#randomNumber").html(randomNumber);
-	var totalScore = 0;
-	var numberWins = 0;
-	var numberLosses = 0;
-	var redScore = 0;
-	var greenScore = 0;
-	var blueScore = 0;
-	var yellowScore = 0;
+    if (totalScore> randomNumber ) {
+        alert("You Lose !");
+        losses++;
+        $("#totalScore").html(0);
+        console.log(wins); // Internal Test
+        prepare();
+    }
 
-function restart()	{
-	totalScore= 0;
-	$("#totalScore").text(0);
-
-	randomNumber =0;
-	$("#randomNumber").html(randomNumber);
-
-	redScore=0;
-	greenScore =0;
-	blueScore=0;
-	yellowScore =0;
-
-	main()
-
-}
-
-function score() {
-	if(totalScore === numberRandom){
-		alert("Winner !");
-		numberWins++;
-		restart();
-	}
-
-	if(totalScore > numberRandom){
-		alert("I'm sorry, you lose");
-		numberLosses++;
-		restart();
-	}
-
-
-}
-
-function main() {
-
-
-	var randomNumber = Math.floor((Math.random()*102)+19);
-	var numberRandom = randomNumber;
-	$("#randomNumber").html(numberRandom);
-	var redScore = Math.floor((Math.random()*12)+1);
-	var greenScore = Math.floor((Math.random()*12)+1);
-	var blueScore = Math.floor((Math.random()*12)+1);
-	var yellowScore = Math.floor((Math.random()*12)+1);
-
-	$("#numberWins").html(numberWins);
-	$("#numberLosses").html(numberLosses);
-
-	console.log(randomNumber);
-
-	
-    main()
-
-
-
-
-
-
-
-
+    $("#numberWins").html(wins);
+    $("#numberLosses").html(losses);
 
 
 }
+function main (){
+    $("#redCrystal").on("click", function(){
+            totalScore+=redVal;
+            $("#totalScore").html(totalScore);
+            console.log(totalScore);
+            outcome();
+        });
 
-	//function targetNumber() {
-	//$("#randomNumber").html(randomNumber);
+    $("#blueCrystal").on("click", function(){
+            totalScore+=blueVal;
+            $("#totalScore").html(totalScore);
+            console.log(totalScore);
+            outcome();
+        });
+
+    $("#greenCrystal").on("click", function(){
+            totalScore+=greenVal;
+            $("#totalScore").html(totalScore);
+            console.log(totalScore);
+            outcome();
+        });
+
+    $("#yellowCrystal").on("click", function(){
+            totalScore+=yellowVal;
+            $("#totalScore").html(totalScore);
+            console.log(totalScore);
+            outcome();
+        });
+
+
+
+
+
+
+
+
+}
+
+
+
+// Main Game Functions
+prepare();
+outcome();
+main();
+
 });
 
-//targetNumber();
-
-
-
-//}); // document ready ending tag
-
-
-// Populates the random number in the HTML at the start of the game
+            
+        
